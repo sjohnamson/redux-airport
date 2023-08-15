@@ -1,14 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App/App';
-
-/** TODO: import REDUX **/
-
-
-/** TODO: Add REDUCERS */
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 
 
-/** TODO: Create store */
+/** REDUCERS */
+const airlines = (state = ['yes'], action) => {
+    console.log('in airlines reducer', action.newAirline);
+if(action.type === 'ADD_AIRLINE') {
+    return [...state, action.newAirline]
+}
+    return state
+}
+/**store */
+const storeInstance = createStore(
+    combineReducers({
+        airlines
+      })
+)
 
 
 
@@ -16,6 +26,8 @@ import App from './components/App/App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <App />
+        <Provider store={storeInstance}>
+            <App />
+        </Provider>
     </React.StrictMode>
 );
