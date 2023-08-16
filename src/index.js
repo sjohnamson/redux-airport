@@ -7,9 +7,9 @@ import { Provider } from 'react-redux';
 
 /** REDUCERS */
 const airlines = (state = ['yes'], action) => {
-    console.log('in airlines reducer', action.newAirline);
+    console.log('in airlines reducer', action);
 if(action.type === 'ADD_AIRLINE') {
-    return [...state, action.newAirline]
+    return [...state, action.payload]
 }
     return state
 }

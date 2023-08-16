@@ -18,7 +18,7 @@ function App() {
       type: 'ADD_AIRLINE',
       payload: newAirline
     })
-    // setNewAirline('')
+    setNewAirline('')
   }
 
   return (
