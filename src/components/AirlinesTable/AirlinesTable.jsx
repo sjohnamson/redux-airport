@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export default function AirlinesTable({airlines}) {
+export default function AirlinesTable({ airlines, planeCount }) {
 
   return <table>
     <thead>
@@ -10,14 +10,20 @@ export default function AirlinesTable({airlines}) {
       </tr>
     </thead>
     <tbody>
-      {airlines.map((airline, i) => {
-        console.log('airline in map: ', airlines);
-        return (
-          <tr key={i}>
-            <td>{airline}</td>
-          </tr>
-        );
-      })}
+      <tr>
+        {airlines?.map((airline, i) => {
+          console.log('airline in map: ', airlines);
+          return (
+            <td key={i}>{airline}</td>
+          );
+        })}
+        {planeCount?.map((planes, i) => {
+          console.log('planes in map: ', planes);
+          return (
+            <td key={i}>{planeCount}</td>
+          );
+        })}
+      </tr>
     </tbody>
   </table>;
 }

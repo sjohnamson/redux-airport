@@ -6,21 +6,27 @@ import { Provider } from 'react-redux';
 
 
 /** REDUCERS */
-const airlines = (state = ['yes'], action) => {
+const airlines = (state = [], action) => {
     console.log('in airlines reducer', action);
-if(action.type === 'ADD_AIRLINE') {
-    return [...state, action.payload]
+    if (action.type === 'ADD_AIRLINE') {
+        return [...state, action.payload]
+    }
+    return state
 }
+
+const planeCount = (state = [], action) => {
+    if (action.type === 'ADD_PLANES') {
+        return [...state, action.payload]
+    }
     return state
 }
 /**store */
 const storeInstance = createStore(
     combineReducers({
-        airlines
-      })
+        airlines,
+        planeCount
+    })
 )
-
-
 
 // Be sure to add the Provider! Just wrap App with it. Don't copy and paste from lecture, that will cause issues.
 const root = ReactDOM.createRoot(document.getElementById('root'));

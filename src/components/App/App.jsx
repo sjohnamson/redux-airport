@@ -6,19 +6,22 @@ import AirlinesTable from '../AirlinesTable/AirlinesTable';
 function App() {
 
   const airlines = useSelector(store => store.airlines);
+  const planeCount = useSelector(store => store.planeCount);
 
   const [newAirline, setNewAirline] = useState('');
+  const [newPlaneCount, setNewPlaneCount] = useState(0);
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
+  const handleAddAirline = (event) => {
     event.preventDefault();
     console.log('in handleSubmit', newAirline);
     dispatch({
       type: 'ADD_AIRLINE',
-      payload: newAirline
+      payload: [newAirline, newPlaneCount]
     })
-    setNewAirline('')
+    setNewAirline('');
+    setNewPlaneCount(0);
   }
 
   return (
@@ -27,9 +30,13 @@ function App() {
       <AirlineForm
         newAirline={newAirline}
         setNewAirline={setNewAirline}
-        handleSubmit={handleSubmit}
+        handleAddAirline={handleAddAirline}
+        newPlaneCount={newPlaneCount}
+        setNewPlaneCount={setNewPlaneCount}
       />
-      <AirlinesTable airlines={airlines} />
+      <AirlinesTable 
+      airlines={airlines} 
+      planeCount={planeCount}/>
     </div>
   );
 }
